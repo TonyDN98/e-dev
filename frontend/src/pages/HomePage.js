@@ -1,7 +1,8 @@
 // src/pages/HomePage.js
 import React, { useEffect, useState } from 'react';
-import { fetchThreads } from '../services/api';
 import { Link } from 'react-router-dom';
+import { fetchThreads } from '../services/api';
+import styles from './HomePage.module.css';
 
 function HomePage() {
     const [threads, setThreads] = useState([]);
@@ -19,14 +20,19 @@ function HomePage() {
     }, []);
 
     return (
-        <div>
-            <h2>Lista Discuțiilor</h2>
-            {threads.map((thread) => (
-                <div key={thread._id}>
-                    <h3><Link to={`/thread/${thread._id}`}>{thread.title}</Link></h3>
-                    <p>{thread.content}</p>
-                </div>
-            ))}
+        <div className={styles.container}>
+            <h1>Forum pentru Developeri</h1>
+            <Link to="/new-thread" className={styles.createLink}>Creează o discuție nouă</Link>
+            <ul>
+                {threads.map(thread => (
+                    <li key={thread._id}>
+                        <Link to={`/thread/${thread._id}`}>
+                            <h3>{thread.title}</h3>
+                        </Link>
+                        <p>{thread.content.slice(0, 100)}...</p>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

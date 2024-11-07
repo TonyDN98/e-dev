@@ -2,23 +2,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
 import ThreadPage from './pages/ThreadPage';
 import NewThreadPage from './pages/NewThreadPage';
 
 function App() {
-  return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/thread/:id" element={<ThreadPage />} />
-          <Route path="/new-thread" element={<NewThreadPage />} />
-        </Routes>
-      </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/thread/:id" element={<ThreadPage />} />
+                <Route path="/new-thread" element={<NewThreadPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

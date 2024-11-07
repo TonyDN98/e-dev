@@ -16,4 +16,17 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/threads', async (req, res) => {
+    console.log('Request primit pentru crearea discuției:', req.body);
+    try {
+        const { title, content, author } = req.body;
+        const newThread = await Thread.create({ title, content, author });
+        res.status(201).json(newThread);
+    } catch (error) {
+        console.error('Eroare la crearea discuției:', error);
+        res.status(500).json({ error: 'Eroare la crearea discuției' });
+    }
+});
+
+
 module.exports = router;
